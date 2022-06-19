@@ -49,9 +49,13 @@ function App() {
     setDetail(prevData => prevData.filter(order => order.id != rowId))
   }
 
+  const editRowHandler = (editData, rowId) => {
+    console.log(editData,'App.js')
+  }
+
   return (
     <div className="App">
-      <OrderList data={detail} onDelete={deleteRowHandler} />
+      <OrderList data={detail} onDelete={deleteRowHandler} onEdit={editRowHandler} />
       <button onClick={showModalHandler}>Add</button>
       {showModal && <NewOrderForm onGetNewData={getDataHandler} onClose={hideModalHandler} />}
     </div>
