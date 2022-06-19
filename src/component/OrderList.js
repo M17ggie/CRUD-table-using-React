@@ -39,7 +39,7 @@ const OrderList = (props) => {
                         <td>{data.email}</td>
                         <td>{data.designation}</td>
                         <td><button onClick={() => { props.onDelete(data.id) }}>Delete</button></td>
-                        <td><button onClick={showEditFormHandler}>Edit</button></td>
+                        <td><button onClick={showEditFormHandler.bind(this, data.id)}>Edit</button></td>
                     </tr>
                 })}
             </tbody>
