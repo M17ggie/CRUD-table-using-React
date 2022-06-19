@@ -49,8 +49,9 @@ function App() {
     setDetail(prevData => prevData.filter(order => order.id != rowId))
   }
 
-  const editRowHandler = (editData, rowId) => {
+  const editRowHandler = (editData) => {
     console.log(editData,'App.js')
+    // setDetail(editData);
   }
 
   return (
