@@ -1,4 +1,23 @@
+import { useState } from "react"
+import EditRow from "./EditRow";
+
 const OrderList = (props) => {
+
+    const [showEditForm, setShowEditForm] = useState(false);
+
+    const showEditFormHandler = (e) => {
+        e.preventDefault();
+        setShowEditForm(true)
+    }
+
+    const hideEditFormHandler = () => {
+        setShowEditForm(false)
+    }
+
+    const editedDataHandler = (editedData, rowId) => {
+        // console.log(editedData)
+        props.onEdit(editedData)
+    }
 
     return <div>
         <table>
@@ -12,19 +31,19 @@ const OrderList = (props) => {
                 </tr>
             </thead>
             <tbody>
-                {props.data.map(data=>{
+                {props.data.map(data => {
                     return <tr key={Math.random().toString()}>
                         <td>{data.id}</td>
                         <td>{data.name}</td>
                         <td>{data.age}</td>
                         <td>{data.email}</td>
                         <td>{data.designation}</td>
-                        <td><button onClick={()=>{props.onDelete(data.id)}}>Delete</button></td>
-                        <td><button>Edit</button></td>
+                        <td><button onClick={() => { props.onDelete(data.id) }}>Delete</button></td>
+                        <td><button onClick={showEditFormHandler}>Edit</button></td>
                     </tr>
                 })}
             </tbody>
-            { }
+            {showEditForm && <EditRow onClose={hideEditFormHandler} onGetEditData={editedDataHandler} />}
         </table>
     </div>
 }
