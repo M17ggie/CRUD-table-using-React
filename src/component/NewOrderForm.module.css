@@ -1,0 +1,14 @@
+.form-control{
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    flex-direction: column;
+}
+
+.form-control-elements{
+    margin: 0.5rem;
+}
+
+.form-actions{
+    margin: 1rem;
+}
