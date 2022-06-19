@@ -5,8 +5,7 @@ const OrderList = (props) => {
 
     const [showEditForm, setShowEditForm] = useState(false);
 
-    const showEditFormHandler = (e) => {
-        e.preventDefault();
+    const showEditFormHandler = () => {
         setShowEditForm(true)
     }
 
@@ -16,7 +15,10 @@ const OrderList = (props) => {
 
     const editedDataHandler = (editedData, rowId) => {
         // console.log(editedData)
-        props.onEdit(editedData)
+        const listIndex = props.data.findIndex(item => item.id === rowId);
+        props.data[listIndex] = editedData
+        // props.onEdit(editedData)
+        console.log(props.data)
     }
 
     return <div>
