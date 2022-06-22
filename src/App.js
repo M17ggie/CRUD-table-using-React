@@ -59,10 +59,14 @@ function App() {
     }))
   }
 
+  const sortDataHandler=(sortData)=>{
+    setDetail(sortData)
+  }
+
   return (
     <div className="App">
       <Sort />
-      <OrderList data={detail} onDelete={deleteRowHandler} onEdit={editRowHandler} />
+      <OrderList data={detail} onDelete={deleteRowHandler} onEdit={editRowHandler} onSortData={sortDataHandler} />
       <button onClick={showModalHandler}>Add</button>
       {showModal && <NewOrderForm onGetNewData={getDataHandler} onClose={hideModalHandler} />}
     </div>
