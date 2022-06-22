@@ -5,7 +5,7 @@ const OrderList = (props) => {
 
     const [editingId, setEditingId] = useState();
 
-    const [sort,setSort]=useState('ASC')
+    const [sort, setSort] = useState('ASC')
 
     const showEditFormHandler = (id) => {
         // setShowEditForm(true);
@@ -27,15 +27,28 @@ const OrderList = (props) => {
     }
 
     //sorting data
-    const sortIdHandler=(column)=>{
-
+    const sortHandler = (column) => {
+        if (sort === 'ASC') {
+            const sortData = [...props.data].sort((a, b) => (
+                a[column] > b[column] ? 1 : -1
+            ))
+            props.onSortData(sortData);
+            setSort('DSC')
+        }
+        if (sort === 'DSC') {
+            const sortData = [...props.data].sort((a, b) => (
+                a[column] < b[column] ? 1 : -1
+            ))
+            props.onSortData(sortData);
+            setSort('ASC')
+        }
     }
 
     return <div>
         <table>
             <thead>
                 <tr>
-                    <th>Id&nbsp;&nbsp;<span onClick={sortIdHandler()}>&#8645;</span></th>
+                    <th>Id&nbsp;&nbsp;<span onClick={sortHandler('id')}>&#8645;</span></th>
                     <th>Name&nbsp;&nbsp;<span>&#8645;</span></th>
                     <th>Age&nbsp;&nbsp;<span>&#8645;</span></th>
                     <th>Email&nbsp;&nbsp;<span>&#8645;</span></th>
