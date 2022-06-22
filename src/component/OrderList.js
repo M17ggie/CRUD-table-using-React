@@ -3,33 +3,43 @@ import EditRow from "./EditRow";
 
 const OrderList = (props) => {
 
-    const [showEditForm, setShowEditForm] = useState(false);
+    const [editingId, setEditingId] = useState();
 
-    const showEditFormHandler = () => {
-        setShowEditForm(true)
+    const [sort,setSort]=useState('ASC')
+
+    const showEditFormHandler = (id) => {
+        // setShowEditForm(true);
+        setEditingId(id)
     }
 
     const hideEditFormHandler = () => {
-        setShowEditForm(false)
+        // setShowEditForm(false)
+        setEditingId(null)
     }
 
-    const editedDataHandler = (editedData, rowId) => {
+    const editedDataHandler = (editedData) => {
         // console.log(editedData)
-        const listIndex = props.data.findIndex(item => item.id === rowId);
+        const listIndex = props.data.findIndex(item => item.id === editingId);
         props.data[listIndex] = editedData
-        // props.onEdit(editedData)
+        props.onEdit(editedData)
         console.log(props.data)
+        // console.log(editedData, 'Edited Data');
+    }
+
+    //sorting data
+    const sortIdHandler=(column)=>{
+
     }
 
     return <div>
         <table>
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Age</th>
-                    <th>Email</th>
-                    <th>Designation</th>
+                    <th>Id&nbsp;&nbsp;<span onClick={sortIdHandler()}>&#8645;</span></th>
+                    <th>Name&nbsp;&nbsp;<span>&#8645;</span></th>
+                    <th>Age&nbsp;&nbsp;<span>&#8645;</span></th>
+                    <th>Email&nbsp;&nbsp;<span>&#8645;</span></th>
+                    <th>Designation&nbsp;&nbsp;<span>&#8645;</span></th>
                 </tr>
             </thead>
             <tbody>
@@ -45,7 +55,7 @@ const OrderList = (props) => {
                     </tr>
                 })}
             </tbody>
-            {showEditForm && <EditRow onClose={hideEditFormHandler} onGetEditData={editedDataHandler} />}
+            {editingId && <EditRow onClose={hideEditFormHandler} onGetEditData={editedDataHandler} />}
         </table>
     </div>
 }
