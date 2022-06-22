@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import "./App.css";
 import NewOrderForm from "./components/NewOrderForm";
 import OrderList from "./components/OrderList";
+import Sort from "./components/Sort";
 
 const data = [
   {
@@ -50,12 +51,17 @@ function App() {
   }
 
   const editRowHandler = (editData) => {
-    console.log(editData,'App.js')
-    // setDetail(editData);
+    setDetail(x => x.map(data => {
+      if (data.id === editData.id) {
+        return editData;
+      }
+      return data;
+    }))
   }
 
   return (
     <div className="App">
+      <Sort />
       <OrderList data={detail} onDelete={deleteRowHandler} onEdit={editRowHandler} />
       <button onClick={showModalHandler}>Add</button>
       {showModal && <NewOrderForm onGetNewData={getDataHandler} onClose={hideModalHandler} />}
