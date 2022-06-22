@@ -49,10 +49,10 @@ const OrderList = (props) => {
             <thead>
                 <tr>
                     <th>Id&nbsp;&nbsp;<span onClick={sortHandler('id')}>&#8645;</span></th>
-                    <th>Name&nbsp;&nbsp;<span>&#8645;</span></th>
-                    <th>Age&nbsp;&nbsp;<span>&#8645;</span></th>
-                    <th>Email&nbsp;&nbsp;<span>&#8645;</span></th>
-                    <th>Designation&nbsp;&nbsp;<span>&#8645;</span></th>
+                    <th>Name&nbsp;&nbsp;<span onClick={sortHandler('name')}>&#8645;</span></th>
+                    <th>Age&nbsp;&nbsp;<span onClick={sortHandler('age')}>&#8645;</span></th>
+                    <th>Email&nbsp;&nbsp;<span onClick={sortHandler('email')}>&#8645;</span></th>
+                    <th>Designation&nbsp;&nbsp;<span onClick={sortHandler('designation')}>&#8645;</span></th>
                 </tr>
             </thead>
             <tbody>
