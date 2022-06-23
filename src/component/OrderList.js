@@ -39,7 +39,7 @@ const OrderList = (props) => {
             const sortData = [...props.data].sort((a, b) => (
                 a[column] < b[column] ? 1 : -1
             ))
-            props.onSortData(sortData);
+            props.data = sortData;
             setSort('ASC')
         }
     }
